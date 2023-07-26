@@ -42,13 +42,16 @@ class Solution:
             
             #TODO: Write code below to return an int with the solution to the prompt.
         word = ""
-        greatest_subsequence = 0
-        for i in range(len(arr) - 1):
-            if arr[i] < arr[i + 1]:
-                word += str(arr[i])
-                greatest_subsequence += 1
-        if greatest_subsequence == 0:
-            return 1
+        greatest_subsequence = 1
+        val = 0
+        for i in range(len(arr)):
+            for i in range(i, len(arr) - 1):
+                if arr[i] < arr[i + 1]:
+                    word += str(arr[i])
+                    val += 1
+            if val > greatest_subsequence:
+                greatest_subsequence = val
+            val = 0
         return greatest_subsequence
 
 def main():
