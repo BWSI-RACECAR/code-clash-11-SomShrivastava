@@ -37,22 +37,19 @@ Input: [3, 1, 4, 1, 5, 9, 2, 6, 5], Output: 4
 """
 class Solution:
     def find_longest_increasing_subsequence(self, arr):
-            #type arr: list of int
-            #return type: int
-            
-            #TODO: Write code below to return an int with the solution to the prompt.
-        word = ""
-        greatest_subsequence = 1
-        val = 0
-        for i in range(len(arr)):
-            for i in range(i, len(arr) - 1):
-                if arr[i] < arr[i + 1]:
-                    word += str(arr[i])
-                    val += 1
-            if val > greatest_subsequence:
-                greatest_subsequence = val
-            val = 0
-        return greatest_subsequence
+        length = len(arr)
+        if length == 0:
+            return 0
+
+        lis = [1] * length
+
+        for i in range(1, length):
+            for j in range(i):
+                if arr[i] > arr[j]:
+                    lis[i] = max(lis[i], lis[j] + 1)
+
+        return max(lis)
+
 
 def main():
     array = input().split(" ")
